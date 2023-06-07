@@ -6,7 +6,7 @@ class Label(enum.Enum):
     
 class Email:
     id = -1
-    date = ""
+    datetime = ""
     labels = []
 
     def __init__(self, sender, recipient, subject, content, priority):
