@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class EmailController:
     emails = {}
     current_index = 0
@@ -13,6 +15,7 @@ class EmailController:
 
     def send_email(self,  email):
         email.id = self.current_index
+        email.datetime = datetime.now()
         self.emails[self.current_index] = email
         
         self.current_index += 1
