@@ -2,7 +2,7 @@ class EmailController:
     emails = {}
     current_index = 0
 
-    def show_list(self, recipient_email):
+    def get_list(self, recipient_email):
         email_list = []
 
         for email in self.emails.values():
@@ -12,16 +12,45 @@ class EmailController:
         return email_list
 
     def send_email(self,  email):
-        email.update_id(self.current_index)
+        email.id = self.current_index
         self.emails[self.current_index] = email
         
         self.current_index += 1
-    
-    def delete_email(self, email_id):
-        del self.emails[email_id]
 
-    def add_label(self, email_id, label):
-        return self.emails[email_id].add_label(label)
+    def read_email(self, id):
+        if id in self.emails.keys():
+            return self.emails[id]
+        
+        return None
     
-    def remove_label(self, email_id, label):
-        return self.emails[email_id].remove_label(label)
+    def delete_email(self, id):
+        if id in self.emails.keys():
+            del self.emails[id]
+
+            return True
+        
+        return False
+
+    def add_label(self, id, label):
+        if id in self.emails.keys():
+            self.emails[id].add_label(label)
+
+            return True
+        
+        return False
+    
+    def remove_label(self, id, label):
+        if id in self.emails.keys():
+            self.emails[id].remove_label(label)
+
+            return True
+        
+        return False
+    
+    def update_priority(self, id, priority):
+        if id in self.emails.keys():
+            self.emails[id].priority = priority
+
+            return True
+        
+        return False

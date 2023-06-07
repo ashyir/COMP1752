@@ -6,9 +6,10 @@ class Label(enum.Enum):
     
 class Email:
     id = -1
+    date = ""
     labels = []
 
-    def __init__(self, priority, sender, recipient, subject, content):
+    def __init__(self, sender, recipient, subject, content, priority):
         self.priority = priority
         self.sender = sender
         self.recipient = recipient
@@ -30,6 +31,3 @@ class Email:
             return True
         
         return False
-
-    def update_id(self, id):
-        self.id = id
