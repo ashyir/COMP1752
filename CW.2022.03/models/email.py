@@ -7,10 +7,6 @@ class Label(enum.Enum):
 
 
 class Email:
-    id = -1
-    datetime = ""
-    labels = []
-
     def __init__(
         self,
         sender=None,
@@ -19,11 +15,15 @@ class Email:
         content=None,
         priority=None,
     ):
-        self.priority = priority
-        self.sender = sender
         self.recipient = recipient
+        self.priority = priority
         self.subject = subject
         self.content = content
+        self.sender = sender
+
+        self.datetime = ""
+        self.labels = []
+        self.id = -1
 
     def add_label(self, label):
         if label not in self.labels:

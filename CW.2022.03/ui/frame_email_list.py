@@ -102,9 +102,8 @@ class EmailListFrame(tk.Frame):
         selected_items = self.email_list.selection()
 
         for item in selected_items:
-            is_deleted = email_manager.delete_email(
-                self.email_list.item(item)["values"][0]
-            )
+            email_id = self.email_list.item(item)["values"][0]
+            is_deleted = email_manager.delete_email(email_id)
 
             if is_deleted:
                 self.email_list.delete(item)
