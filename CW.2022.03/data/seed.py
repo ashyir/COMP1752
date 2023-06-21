@@ -20,7 +20,7 @@ class Seed:
                     first_name="Tester",
                     last_name=f"0{number}",
                     birthday="01/01/2000",
-                    gender=Gender.Female if number % 2 == 0 else Gender.Male,
+                    gender=Gender.FEMALE if number % 2 == 0 else Gender.MALE,
                 )
             )
 
@@ -35,7 +35,7 @@ class Seed:
                         recipient=recipient,
                         subject=f"Testing Email {number}",
                         content=f"This is a testing email {number}.",
-                        priority=0,
+                        priority=number % 5,
                     )
                 )
 

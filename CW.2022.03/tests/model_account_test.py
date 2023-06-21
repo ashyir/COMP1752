@@ -2,7 +2,7 @@ import pytest
 from models.account import Account, Gender
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture
 def sample():
     return Account(
         "test@test.com",
@@ -11,7 +11,7 @@ def sample():
         "Tester",
         "01",
         "01/01/2000",
-        Gender.Female,
+        Gender.FEMALE,
     )
 
 
@@ -22,7 +22,4 @@ def test_account_attribute(capsys, sample):
     assert sample.first_name == "Tester"
     assert sample.last_name == "01"
     assert sample.birthday == "01/01/2000"
-    assert sample.gender == Gender.Female
-
-    with capsys.disabled():
-        print(f"Tested {sample.__class__.__name__} successfully.")
+    assert sample.gender == Gender.FEMALE

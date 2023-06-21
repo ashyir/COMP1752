@@ -2,8 +2,8 @@ import enum
 
 
 class Label(enum.Enum):
-    Important = 1
-    Star = 2
+    IMPORTANT = "Important"
+    STAR = "Star"
 
 
 class Email:

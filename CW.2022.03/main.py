@@ -7,7 +7,12 @@ Seed().populate()
 # Run application.
 app = MainWindow()
 
+x = y = 0
+
+width = app.winfo_screenwidth()
+height = app.winfo_screenheight()
+
+app.geometry(f"{width}x{height}+{x}+{y}")
 app.title("Email Manager")
-app.attributes("-zoomed", True)
 
 app.mainloop()

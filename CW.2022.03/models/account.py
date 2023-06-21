@@ -2,9 +2,9 @@ import enum
 
 
 class Gender(enum.Enum):
-    Female = 0
-    Male = 1
-    Other = 2
+    FEMALE = "Female"
+    MALE = "Male"
+    OTHER = "Other"
 
 
 class Account:
