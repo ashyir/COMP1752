@@ -11,7 +11,14 @@ class Email:
     datetime = ""
     labels = []
 
-    def __init__(self, sender, recipient, subject, content, priority):
+    def __init__(
+        self,
+        sender=None,
+        recipient=None,
+        subject=None,
+        content=None,
+        priority=None,
+    ):
         self.priority = priority
         self.sender = sender
         self.recipient = recipient
@@ -33,3 +40,6 @@ class Email:
             return True
 
         return False
+
+    def __str__(self):
+        return f"{self.sender} - {self.subject}"

@@ -1,12 +1,23 @@
 import enum
 
+
 class Gender(enum.Enum):
     Female = 0
     Male = 1
     Other = 2
-    
+
+
 class Account:
-    def __init__(self, email, password, display_name, first_name, last_name, birthday, gender):
+    def __init__(
+        self,
+        email=None,
+        password=None,
+        display_name=None,
+        first_name=None,
+        last_name=None,
+        birthday=None,
+        gender=None,
+    ):
         self.email = email
         self.password = password
         self.display_name = display_name
@@ -14,3 +25,6 @@ class Account:
         self.last_name = last_name
         self.birthday = birthday
         self.gender = gender
+
+    def __str__(self):
+        return f"{self.display_name} ({self.email})"

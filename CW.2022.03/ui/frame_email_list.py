@@ -1,19 +1,33 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 
+from controllers.email import email_manager
+from controllers.account import account_manager
+
 
 class EmailListFrame(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = ttk.Label(self, text="Main Page")
-        label.grid(row=0, column=4, padx=10, pady=10)
 
-        # button to show frame 2 with text
-        # layout2
-        button1 = ttk.Button(
-            self, text="Logout", command=lambda: controller.show_frame(LoginPage)
+        lbl_greeting = ttk.Label(
+            self, text=f"Hello {account_manager.current_user.email} !"
         )
+        lbl_greeting.grid(row=0, column=0, padx=5)
 
-        # putting the button in its place
-        # by using grid
-        button1.grid(row=1, column=1, padx=10, pady=10)
+        btn_logout = ttk.Button(
+            self, text="Logout", command=lambda: controller.show_login_frame()
+        )
+        btn_logout.grid(row=0, column=1, padx=5)
+
+        self.email_list = tk.Listbox(self, selectmode=tk.EXTENDED)
+        self.email_list.grid(row=2, column=0)
+
+        for email in email_manager.get_list(account_manager.current_user.email):
+            self.email_list.insert(tk.END, email)
+
+        self.email_list.bind("<<ListboxSelect>>", self.on_select)
+
+    def on_select(self, event):
+        selected_indices = self.email_list.curselection()
+        selected_items = [self.email_list.get(idx) for idx in selected_indices]
+        print("Selected items:", selected_items)
