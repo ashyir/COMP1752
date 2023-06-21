@@ -1,37 +1,21 @@
-import tkinter as tk
+from ui.window_main import MainWindow
 
-from view_login import LoginPage
-from view_main import MainPage
+from controllers.email import EmailController
+from controllers.account import AccountController
 
+from models.account import Account, Gender
 
-class Main(tk.Tk):
-    def __init__(self, *args, **kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)
+account = Account(
+    "admin@test.com",
+    "p@ssword",
+    "Admin 01",
+    "Admin",
+    "01",
+    "01/01/2000",
+    Gender.Female,
+)
 
-        container = tk.Frame(self)
-        container.pack(side="top", fill="both", expand=True)
+AccountController.create_account(account)
 
-        container.grid_rowconfigure(0, weight=1)
-        container.grid_columnconfigure(0, weight=1)
-
-        self.frames = {}
-
-        for F in (LoginPage, MainPage):
-            frame = F(container, self)
-
-            self.frames[F] = frame
-            frame.grid(row=0, column=0, sticky="nsew")
-
-        self.show_frame(LoginPage)
-
-    def show_frame(self, cont):
-        frame = self.frames[cont]
-        frame.tkraise()
-
-    def login(self, is_authenticated):
-        if is_authenticated:
-            self.show_frame(MainPage)
-
-
-app = Main()
+app = MainWindow()
 app.mainloop()

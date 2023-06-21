@@ -1,10 +1,8 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 
-from view_login import LoginPage
 
-
-class MainPage(tk.Frame):
+class EmailListFrame(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         label = ttk.Label(self, text="Main Page")
