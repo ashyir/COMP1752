@@ -11,6 +11,18 @@ class Seed:
         self.populate_email()
 
     def populate_account(self):
+        account_manager.create_account(
+            Account(
+                email="no_reply@test.com",
+                password="P@ssword",
+                display_name="No Reply",
+                first_name="No",
+                last_name="Reply",
+                birthday="01/01/2000",
+                gender=Gender.MALE,
+            )
+        )
+
         for number in range(1, 4):
             account_manager.create_account(
                 Account(

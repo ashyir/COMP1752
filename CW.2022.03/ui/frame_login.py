@@ -75,8 +75,8 @@ class LoginFrame(tk.Frame):
     def show_sample_accounts(self):
         accounts = list(account_manager.accounts.values())
 
-        self.txt_email.insert(0, accounts[0].email)
-        self.txt_password.insert(0, accounts[0].password)
+        self.txt_email.insert(0, accounts[1].email)
+        self.txt_password.insert(0, accounts[1].password)
 
         for index, account in enumerate(accounts):
             account_frame = tk.Frame(self.frame)
