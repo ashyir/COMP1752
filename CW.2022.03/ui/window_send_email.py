@@ -1,3 +1,4 @@
+import re
 import tkinter as tk
 import tkinter.ttk as ttk
 
@@ -46,9 +47,16 @@ class SendEmailWindow(tk.Tk):
         self.txt_content.grid(row=3, column=0, columnspan=2, sticky="nsew")
 
     def send_email(self):
+        regex = r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b"
+
+        recipient = self.txt_recipient.get()
+
+        if not re.fullmatch(regex, recipient):
+            return self.txt_recipient.config(highlightbackground="red")
+
         email = Email(
             sender=self.sender,
-            recipient=self.txt_recipient.get(),
+            recipient=recipient,
             subject=self.txt_subject.get(),
             content=self.txt_content.get("1.0", tk.END),
             priority=1,
