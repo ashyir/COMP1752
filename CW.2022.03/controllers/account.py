@@ -1,4 +1,4 @@
-from models.account import Account
+from models.account import Account, LoginStatus
 
 
 class AccountController:
@@ -42,11 +42,13 @@ class AccountController:
         return False
 
     def authenticate(self, email, password):
-        if email in self.accounts.keys():
-            if self.accounts[email].password == password:
-                return True
+        if email not in self.accounts.keys():
+            return LoginStatus.USER_NOT_FOUND
 
-        return False
+        if self.accounts[email].password != password:
+            return LoginStatus.WRONG_PASSWORD
+
+        return LoginStatus.SUCCESS
 
     def change_password(self, email, new_password):
         if email in self.accounts.keys():
@@ -57,4 +59,5 @@ class AccountController:
         return False
 
 
+# Initialize controller.
 account_manager = AccountController()

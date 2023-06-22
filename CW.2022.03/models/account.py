@@ -7,6 +7,13 @@ class Gender(enum.Enum):
     OTHER = "Other"
 
 
+class LoginStatus(enum.Enum):
+    FAIL = 0
+    SUCCESS = 1
+    USER_NOT_FOUND = 2
+    WRONG_PASSWORD = 3
+
+
 class Account:
     def __init__(
         self,
